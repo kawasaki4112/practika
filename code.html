@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Добавление теста</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script src="script.js"></script>
+</head>
+<body>
+<h1>Добавление теста</h1>
+<form id="testForm">
+<label for="testName">Название теста:</label>
+<input type="text" id="testName" name="testName">
+
+<h2>Вопросы к тесту:</h2>
+
+<div id="questionsContainer">
+<div class="question">
+<label for="question">Вопрос:</label>
+<input type="text" class="questionInput" name="question">
+
+<label>Варианты ответа:</label>
+<div class="answersContainer">
+<div class="answer">
+<input type="text" class="answerInput" name="answer[]">
+<input type="checkbox" class="correctCheckbox" name="correctAnswer[]" value="0">
+<button class="removeAnswerButton" onclick="removeAnswer(event)">Удалить</button>
+</div>
+<div class="answer">
+<input type="text" class="answerInput" name="answer[]">
+<input type="checkbox" class="correctCheckbox" name="correctAnswer[]" value="1">
+<button class="removeAnswerButton" onclick="removeAnswer(event)">Удалить</button>
+</div>
+</div>
+
+<button class="addAnswerButton" onclick="addAnswer(event)">Добавить вариант ответа</button>
+</div>
+</div>
+
+<button id="addQuestionButton">Добавить вопрос</button>
+
+<button type="submit">Сохранить</button>
+
+<script>
+function removeAnswer(event) {
+event.preventDefault();
+var answerContainer = event.target.parentNode;
+var answersContainer = answerContainer.parentNode;
+answersContainer.removeChild(answerContainer);
+}
+</script>
+
+<button onclick="exitWithoutSave()">Выйти</button>
+<script>
+function exitWithoutSave() {
+var confirmExit = confirm('Вы действительно хотите выйти без сохранения теста?');
+if (confirmExit) {
+console.log('Тест не сохранен');
+}
+}
+</script>
+</form>
+</body>
+</html>
